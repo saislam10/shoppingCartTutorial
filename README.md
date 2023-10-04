@@ -18,6 +18,9 @@ The Tailwind branch of this repository integrates the beautiful utility-first Ta
 
 ## Getting Started
 
+1. Run npm install at the root to ensure all necessary dependencies are downloaded.
+2. Add a .env file in the server directory to add a password for mysql connection. The password should be in this format: "MYSQL_PASSWORD=your_password"
+
 ### Running the Backend Server
 
 1. Open a terminal or command prompt.
