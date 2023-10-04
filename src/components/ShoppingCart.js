@@ -22,6 +22,10 @@ function ShoppingCart() {
     return Math.floor(1000000 + Math.random() * 9000000).toString();
   }
 
+  const calculateTotalCost = () => {
+    return cart.reduce((acc, item) => acc + (item.quantity * item.price), 0).toFixed(2);
+  };
+
   const addItemToCart = async () => {
     try {
       const token = localStorage.getItem('token');
@@ -61,27 +65,85 @@ function ShoppingCart() {
   };
 
   return (
-    <div>
-      <h2>Shopping Cart</h2>
+    <div className="bg-gray-100 p-8 min-h-screen">
+      <div className="container mx-auto">
+        <h2 className="text-3xl font-bold mb-4 text-center">Shopping Cart</h2>
 
-      <div>
-        <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Item Name" />
-        <input type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Quantity" />
-        <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="$" />
+        <div className="shadow-md bg-white p-6 rounded-md">
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-600 mb-2">Item Name</label>
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Item Name"
+              className="p-2 border rounded w-full"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-600 mb-2">Quantity</label>
+            <input
+              type="number"
+              value={quantity}
+              onChange={(e) => setQuantity(e.target.value)}
+              placeholder="Quantity"
+              className="p-2 border rounded w-full"
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-600 mb-2">Price</label>
+            <input
+              type="number"
+              value={price}
+              onChange={(e) => setPrice(e.target.value)}
+              placeholder="$"
+              className="p-2 border rounded w-full"
+            />
+          </div>
 
+          <button
+            onClick={addItemToCart}
+            className="bg-blue-600 text-white p-2 rounded hover:bg-blue-700 w-full"
+          >
+            Add Item
+          </button>
+        </div>
 
-        <button onClick={addItemToCart}>Add Item</button>
+        <ul className="mt-6 space-y-4">
+          {cart.map((item) => (
+            <li key={item.cart_id} className="shadow-lg bg-white p-5 rounded-md flex justify-between items-center mb-4 hover:bg-gray-50 transition duration-300">
+              <div className="flex items-center space-x-6">
+                {/* Icon or Image for Product (optional) */}
+                {/* <img src={item.imageURL} alt={item.name} className="w-16 h-16 object-cover rounded" /> */}
+
+                <div>
+                  <span className="block text-lg font-semibold">{item.name}</span>
+                  <span className="block text-gray-600 mt-2">
+                    <span className="font-bold">Quantity:</span> {item.quantity}
+                  </span>
+                  <span className="block text-gray-600 mt-1">
+                    <span className="font-bold">Price:</span> ${item.price.toFixed(2)}
+                  </span>
+                </div>
+              </div>
+
+              <button
+                onClick={() => removeItemFromCart(item.cart_id)}
+                className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 transition duration-300 focus:outline-none focus:ring-2 focus:ring-red-600 focus:ring-opacity-50"
+              >
+                Remove
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
-
-      <ul>
-        {cart.map((item) => (
-          <li key={item.cart_id}>
-            Name:{item.name}, Quantity: {item.quantity}, Price: {item.price}
-            <button onClick={() => removeItemFromCart(item.cart_id)}>Remove</button>
-          </li>
-        ))}
-      </ul>
+      <div className="mt-6 p-4 bg-gray-100 rounded-md shadow">
+        <span className="text-lg font-bold">
+          Total Cost: ${calculateTotalCost()}
+        </span>
+      </div>
     </div>
+
   );
 }
 

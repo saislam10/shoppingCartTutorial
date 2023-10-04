@@ -11,17 +11,34 @@ function Navbar() {
   };
 
   return (
-    <div>
-      {location.pathname !== "/register" && (
-        <Link to="/register">Register</Link>
-      )}
-      {location.pathname !== "/login" && (
-        <Link to="/login">Login</Link>
-      )}
-      {location.pathname === "/cart" && (
-        <button onClick={handleLogout}>Logout</button>
-      )}
+    <div className="bg-blue-900 p-4 text-center">
+      <div className="flex justify-end space-x-4">
+        {location.pathname === "/cart" ? (
+          <button
+            onClick={handleLogout}
+            className="bg-red-600 text-white rounded px-4 py-2 hover:bg-red-500 transition duration-200"
+          >
+            Logout
+          </button>
+        ) : (
+          <>
+            <Link
+              to="/register"
+              className="text-white hover:text-blue-300 transition duration-200"
+            >
+              Register
+            </Link>
+            <Link
+              to="/login"
+              className="text-white hover:text-blue-300 transition duration-200"
+            >
+              Login
+            </Link>
+          </>
+        )}
+      </div>
     </div>
+
   );
 }
 
