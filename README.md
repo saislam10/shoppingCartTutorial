@@ -1,6 +1,6 @@
 # Shopping Cart Web App
 
-This repository contains a full-fledged shopping cart web application built with React, Node.js, and MySQL. It provides authentication, registration, and CRUD operations on cart items.
+This repository contains a shopping cart web application built with React, Node.js, and MySQL. It provides authentication, registration, and CRUD operations on cart items.
 
 ## Features
 
