@@ -1,9 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const mysql = require('mysql2');
+
 
 const app = express();
 const port = 3001;
@@ -12,7 +14,7 @@ const port = 3001;
 const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Weekends121002!+',
+    password: process.env.MYSQL_PASSWORD,
     database: 'shopping_cart'
 });
 db.connect();
