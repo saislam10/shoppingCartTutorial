@@ -4,7 +4,7 @@ This repository contains a full-fledged shopping cart web application built with
 
 ## Features
 
-- **User Authentication**: Secure login and registration system.
+- **User Authentication**: Secure login and registration system. Password hashing using bcrypt and 10 salt rounds.
 - **Shopping Cart CRUD**: Users can add, view, and remove items from the shopping cart.
 - **MySQL Integration**: Backend storage with MySQL, providing persistent storage for user accounts and cart items.
 
