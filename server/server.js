@@ -29,6 +29,7 @@ app.post('/register', async (req, res) => {
         res.sendStatus(201);
     });
 });
+
 const SECRET_KEY = '123456';
 
 app.post('/login', (req, res) => {
